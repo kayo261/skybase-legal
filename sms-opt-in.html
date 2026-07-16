@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Skybase — SMS Program &amp; Opt-In Flow</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+         max-width: 720px; margin: 0 auto; padding: 40px 20px; color: #1a1a1a; background: #fff; }
+  @media (prefers-color-scheme: dark) { body { color: #e8e8e8; background: #16181d; } a { color: #6cb6ff; } }
+  h1 { font-size: 1.8rem; margin-bottom: 0.2em; }
+  h2 { font-size: 1.15rem; margin-top: 1.8em; }
+  a { color: #2E86C9; }
+  .muted { color: #888; font-size: 0.9rem; }
+  .box { border: 1px solid #ccc4; border-radius: 8px; padding: 12px 16px; margin: 16px 0; }
+  .sms { border-left: 4px solid #2E86C9; padding: 8px 16px; margin: 12px 0; background: #2e86c910; border-radius: 0 8px 8px 0; font-style: italic; }
+  figure { margin: 20px 0; text-align: center; }
+  figure img { max-width: 320px; width: 100%; border: 1px solid #ccc6; border-radius: 12px; }
+  figcaption { font-size: 0.9rem; color: #888; margin-top: 8px; }
+</style>
+</head>
+<body>
+  <h1>SMS Program &amp; Opt-In Flow</h1>
+  <p class="muted">Skybase (paragliding companion app) · Operated by Karel Plevac, sole proprietor · Last updated: July 15, 2026</p>
+
+  <p>This page documents, for carrier review and for our users, exactly how
+     Skybase's SMS safety-alert program collects consent and what messages it
+     sends. The app requires an account to use, so the complete in-app flow is
+     reproduced here with screenshots.</p>
+
+  <h2>What the program is</h2>
+  <p>A Skybase user (a paraglider pilot) designates <strong>one emergency
+     contact</strong>. If the pilot enables the optional automatic overdue
+     alert and is ever overdue from a flight without checking in, Skybase sends
+     that contact an automated SMS with the pilot's last known position.
+     There is no marketing, ever. Typical volume is a few messages per year per
+     contact, hard-capped at 3 messages per number per 24 hours.</p>
+
+  <h2>Step 1 — the pilot designates a contact and sees the disclosure</h2>
+  <p>In <em>Settings → Emergency contact</em>, the pilot enters the contact's
+     name and phone number. The feature card discloses, before anything is
+     enabled, that the contact will receive automated texts, will get a
+     one-time enrollment text, can reply STOP at any time, and that message
+     &amp; data rates may apply. The automatic alert is <strong>off by
+     default</strong>.</p>
+  <figure>
+    <img src="img/consent-card.png" alt="Skybase Settings — Emergency contact card with the SMS disclosure text under the auto-alert toggle" />
+    <figcaption>The Emergency-contact card. The auto-alert toggle is off by default; the disclosure text is shown before it can be enabled.</figcaption>
+  </figure>
+
+  <h2>Step 2 — active consent confirmation</h2>
+  <p>Turning the auto-alert on does not silently enable messaging. The app asks
+     the pilot to actively confirm that the contact has agreed to receive these
+     texts. Choosing “Not yet” leaves the feature off; the moment of
+     confirmation is recorded. Only after the pilot confirms does the toggle
+     switch on and the service arm.</p>
+  <figure>
+    <img src="img/consent-dialog.png" alt="Skybase text-message consent dialog — 'Has your contact agreed to receive these texts?' with 'Not yet' and 'They agree' buttons" />
+    <figcaption>The consent dialog shown when enabling the auto-alert. Nothing is pre-checked or pre-enabled.</figcaption>
+  </figure>
+  <figure>
+    <img src="img/auto-alert-on.png" alt="Skybase Emergency-contact card with the auto-alert enabled and a 'Server escalator healthy' status line" />
+    <figcaption>After confirmation, the feature is on. The pilot sees a live status line — the program is transparent about whether it is actually working.</figcaption>
+  </figure>
+
+  <h2>Step 3 — the contact is notified and can opt out</h2>
+  <p>Before any alert can ever be sent, the contact receives a one-time
+     enrollment SMS identifying who enrolled them, what they will receive, and
+     how to opt out:</p>
+  <div class="sms">Hi Sam — Kayo listed you as their emergency contact in
+     Skybase, a paragliding safety app. If they're ever overdue from a flight
+     you'll get an automated alert with their last position. Safety alerts
+     only, no marketing. Msg&amp;data rates may apply. Reply STOP to opt out.</div>
+  <p>Replying <strong>STOP</strong> opts the contact out permanently; Skybase
+     never retries an opted-out number (the safety alert is then simply not
+     sent — the pilot is told to designate someone else). <strong>HELP</strong>
+     returns program information.</p>
+
+  <h2>The only other message the program sends</h2>
+  <p>The actual safety alert, sent only when the pilot is genuinely overdue:</p>
+  <div class="sms">⚠ Kayo is overdue from a flight and hasn't checked in.
+     Last position: https://www.google.com/maps?q=45.51234,-122.68765
+     (Skybase auto-alert) Msg&amp;data rates may apply. Reply STOP to opt out.</div>
+
+  <h2>Program details</h2>
+  <div class="box">
+    <p><strong>Sender:</strong> Skybase's automated safety service, operated by
+       Karel Plevac (sole proprietor).<br/>
+       <strong>Recipients:</strong> only the single emergency contact a user
+       personally designates and confirms consent for.<br/>
+       <strong>Frequency:</strong> one enrollment text, then alerts only on a
+       real overdue event — a few messages per year, capped at 3 per number
+       per 24 h.<br/>
+       <strong>Opt-out:</strong> reply STOP (honored permanently) ·
+       <strong>Help:</strong> reply HELP.<br/>
+       <strong>Fees:</strong> message &amp; data rates may apply.</p>
+  </div>
+
+  <p>See also: <a href="privacy.html">Privacy Policy</a> ·
+     <a href="terms.html">Terms &amp; Conditions</a></p>
+</body>
+</html>
