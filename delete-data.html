@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Skybase — Delete Your Data</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+         max-width: 720px; margin: 0 auto; padding: 40px 20px; color: #1a1a1a; background: #fff; }
+  @media (prefers-color-scheme: dark) { body { color: #e8e8e8; background: #16181d; } a { color: #6cb6ff; } }
+  h1 { font-size: 1.8rem; margin-bottom: 0.2em; }
+  h2 { font-size: 1.15rem; margin-top: 1.8em; }
+  a { color: #2E86C9; }
+  .muted { color: #888; font-size: 0.9rem; }
+  .box { border: 1px solid #ccc4; border-radius: 8px; padding: 12px 16px; margin: 16px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 0.95rem; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #ccc4; vertical-align: top; }
+</style>
+</head>
+<body>
+  <h1>Delete Your Data</h1>
+  <p class="muted">Skybase (paragliding companion app) · Last updated: July 16, 2026</p>
+
+  <p>This page explains how to delete the data <strong>Skybase</strong> holds,
+     both on your device and on our servers. Skybase has no user accounts —
+     the app identifies your device with an anonymous key, and almost all of
+     your data lives only on your own phone.</p>
+
+  <h2>Data on your device (everything by default)</h2>
+  <p>Your flights and IGC track files, logbook, saved sites, gear, routes,
+     settings and emergency-contact details are stored only on your phone.
+     <strong>Uninstalling the app permanently deletes all of it.</strong>
+     You can export a copy first from <em>Settings → Your data → Export my
+     data</em>.</p>
+
+  <h2>Data on our servers (only if you used opt-in features)</h2>
+  <p>Server-side data exists only if you turned on live sharing or safety
+     features. Most of it deletes itself automatically on a short clock:</p>
+  <table>
+    <tr><th>Data</th><th>Kept for</th></tr>
+    <tr><td>Live in-flight positions (with your display name)</td><td>Deleted ~1 hour after your last update</td></tr>
+    <tr><td>Site condition reports (display name + short text)</td><td>Deleted after 48 hours</td></tr>
+    <tr><td>Overdue-safety watches (your name, contact's name &amp; phone)</td><td>Deleted ~1 hour after you check in, or 1 day after the expected return time</td></tr>
+    <tr><td>SMS send log (contact number stored only as a one-way hash)</td><td>Deleted after 7 days</td></tr>
+    <tr><td>SMS enrollment ledger (one-way phone hash, no raw number)</td><td>Deleted after 180 days</td></tr>
+    <tr><td>Crowd thermal points (anonymous, aggregated — no name or identity)</td><td>Up to 2 years</td></tr>
+    <tr><td>Flying-group memberships (anonymous device key + group code)</td><td>Until you leave the group, or on request</td></tr>
+  </table>
+
+  <h2>How to request deletion</h2>
+  <div class="box">
+    <p>To have every server-side record connected to you removed ahead of the
+       automatic schedule above:</p>
+    <ol>
+      <li>Email <a href="mailto:kajoadv@gmail.com?subject=Skybase%20data%20deletion%20request">kajoadv@gmail.com</a>
+          with the subject <strong>“Skybase data deletion request”</strong>.</li>
+      <li>Include your in-app display name (Settings → Buddies) and, if you
+          used flying groups, the group code(s) you joined — that is how we
+          locate your anonymous records, since there is no account.</li>
+      <li>We will delete the matching records and confirm by reply within
+          <strong>30 days</strong> (usually much sooner).</li>
+    </ol>
+    <p>If you also want your device data gone, simply uninstall the app —
+       we never have a copy of your flights, logbook or settings.</p>
+  </div>
+
+  <h2>What is kept after a deletion request</h2>
+  <p>Nothing identifying you. Anonymous, aggregated crowd-thermal points
+     cannot be traced back to a device or person and may remain until their
+     normal 2-year expiry. There are no backups of the deleted rows beyond
+     the platform's short-lived operational backups, which expire
+     automatically.</p>
+
+  <p class="muted"><a href="index.html">Skybase legal</a> ·
+     <a href="privacy.html">Privacy Policy</a> ·
+     <a href="terms.html">Terms &amp; Conditions</a></p>
+</body>
+</html>
