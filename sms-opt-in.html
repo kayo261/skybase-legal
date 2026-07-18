@@ -22,12 +22,25 @@
 </head>
 <body>
   <h1>SMS Program &amp; Opt-In Flow</h1>
-  <p class="muted">Skybase (paragliding companion app) · Operated by Karel Plevac, sole proprietor · Last updated: July 15, 2026</p>
+  <p class="muted">Skybase (paragliding companion app) · Operated by Karel Plevac, sole proprietor · Last updated: July 17, 2026</p>
 
   <p>This page documents, for carrier review and for our users, exactly how
      Skybase's SMS safety-alert program collects consent and what messages it
      sends. The app requires an account to use, so the complete in-app flow is
      reproduced here with screenshots.</p>
+
+  <div class="box">
+    <p><strong>Opt-in type: VERBAL.</strong> The message recipient (the
+       emergency contact) does not use the app. Consent is given
+       <strong>verbally, person-to-person</strong>: the pilot asks their chosen
+       contact directly whether they agree to receive automated safety texts.
+       The app then (1) requires the pilot to attest to that verbal agreement
+       via an explicit in-app confirmation, recording the timestamp, and
+       (2) sends the contact a one-time enrollment SMS that restates the
+       program in writing and offers STOP opt-out before any alert can ever be
+       sent. The screenshots below show how the verbal consent is recorded and
+       confirmed — the consent itself is verbal.</p>
+  </div>
 
   <h2>What the program is</h2>
   <p>A Skybase user (a paraglider pilot) designates <strong>one emergency
@@ -37,7 +50,13 @@
      There is no marketing, ever. Typical volume is a few messages per year per
      contact, hard-capped at 3 messages per number per 24 hours.</p>
 
-  <h2>Step 1 — the pilot designates a contact and sees the disclosure</h2>
+  <h2>Step 1 — the contact agrees verbally</h2>
+  <p>The pilot asks their chosen emergency contact — in person or by phone —
+     whether they agree to receive automated flight-safety texts from Skybase.
+     This person-to-person verbal agreement is the consent; everything below
+     records, confirms, and documents it.</p>
+
+  <h2>Step 2 — the pilot designates the contact and sees the disclosure</h2>
   <p>In <em>Settings → Emergency contact</em>, the pilot enters the contact's
      name and phone number. The feature card discloses, before anything is
      enabled, that the contact will receive automated texts, will get a
@@ -49,12 +68,13 @@
     <figcaption>The Emergency-contact card. The auto-alert toggle is off by default; the disclosure text is shown before it can be enabled.</figcaption>
   </figure>
 
-  <h2>Step 2 — active consent confirmation</h2>
+  <h2>Step 3 — the verbal consent is recorded in-app</h2>
   <p>Turning the auto-alert on does not silently enable messaging. The app asks
-     the pilot to actively confirm that the contact has agreed to receive these
-     texts. Choosing “Not yet” leaves the feature off; the moment of
-     confirmation is recorded. Only after the pilot confirms does the toggle
-     switch on and the service arm.</p>
+     the pilot to actively confirm that the contact <em>has verbally
+     agreed</em> to receive these texts. Choosing “Not yet” leaves the feature
+     off; the moment of confirmation is recorded with a timestamp. Only after
+     the pilot attests to the verbal agreement does the toggle switch on and
+     the service arm.</p>
   <figure>
     <img src="img/consent-dialog.png" alt="Skybase text-message consent dialog — 'Has your contact agreed to receive these texts?' with 'Not yet' and 'They agree' buttons" />
     <figcaption>The consent dialog shown when enabling the auto-alert. Nothing is pre-checked or pre-enabled.</figcaption>
@@ -64,10 +84,11 @@
     <figcaption>After confirmation, the feature is on. The pilot sees a live status line — the program is transparent about whether it is actually working.</figcaption>
   </figure>
 
-  <h2>Step 3 — the contact is notified and can opt out</h2>
+  <h2>Step 4 — the verbal consent is confirmed in writing, with opt-out</h2>
   <p>Before any alert can ever be sent, the contact receives a one-time
-     enrollment SMS identifying who enrolled them, what they will receive, and
-     how to opt out:</p>
+     enrollment SMS that restates in writing what they verbally agreed to —
+     identifying who enrolled them, what they will receive, and how to opt
+     out:</p>
   <div class="sms">Hi Sam — Kayo listed you as their emergency contact in
      Skybase, a paragliding safety app. If they're ever overdue from a flight
      you'll get an automated alert with their last position. Safety alerts

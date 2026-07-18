@@ -3,28 +3,99 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Skybase — Legal</title>
+<title>Skybase — Paragliding weather, instrument &amp; flight log</title>
+<meta name="description" content="Skybase is an offline-first paragliding companion: pre-flight weather and site intelligence, an in-flight vario/XC instrument, an IGC logbook, and an opt-in SMS safety chain. Operated by Karel Plevac, sole proprietor." />
 <style>
   :root { color-scheme: light dark; }
-  body { font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-         max-width: 720px; margin: 0 auto; padding: 40px 20px; color: #1a1a1a; background: #fff; }
+  body { font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+         max-width: 860px; margin: 0 auto; padding: 40px 20px; color: #1a1a1a; background: #fff; }
   @media (prefers-color-scheme: dark) { body { color: #e8e8e8; background: #16181d; } a { color: #6cb6ff; } }
-  h1 { font-size: 1.8rem; }
+  h1 { font-size: 2.2rem; margin-bottom: 0.1em; }
+  h2 { font-size: 1.2rem; margin-top: 2em; }
   a { color: #2E86C9; }
+  .tagline { font-size: 1.15rem; color: #666; margin-top: 0; }
+  @media (prefers-color-scheme: dark) { .tagline { color: #aaa; } }
   .muted { color: #888; font-size: 0.9rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 24px 0; }
+  .card { border: 1px solid #ccc4; border-radius: 10px; padding: 14px 18px; }
+  .card h3 { margin: 0 0 6px; font-size: 1rem; }
+  .card p { margin: 0; font-size: 0.95rem; color: #555; }
+  @media (prefers-color-scheme: dark) { .card p { color: #b5b5b5; } }
+  .shots { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 28px 0; }
+  .shots figure { margin: 0; text-align: center; }
+  .shots img { width: 240px; max-width: 42vw; border: 1px solid #ccc6; border-radius: 16px; }
+  .shots figcaption { font-size: 0.85rem; color: #888; margin-top: 6px; }
+  .box { border: 1px solid #ccc4; border-radius: 8px; padding: 12px 16px; margin: 16px 0; }
+  footer { margin-top: 3em; padding-top: 1.2em; border-top: 1px solid #ccc4; }
 </style>
 </head>
 <body>
   <h1>Skybase</h1>
-  <p>Skybase is an offline-first paragliding companion app (pre-flight weather &amp;
-     site intelligence plus an in-flight instrument), built and run by an
-     individual developer.</p>
-  <ul>
-    <li><a href="privacy.html">Privacy Policy</a></li>
-    <li><a href="terms.html">Terms &amp; Conditions</a></li>
-    <li><a href="sms-opt-in.html">SMS Program &amp; Opt-In Flow</a></li>
-    <li><a href="delete-data.html">Delete Your Data</a></li>
-  </ul>
-  <p class="muted">Contact: <a href="mailto:kajoadv@gmail.com">kajoadv@gmail.com</a></p>
+  <p class="tagline">Paragliding weather, go/no-go site scores, vario, XC &amp; IGC log — offline-first.</p>
+
+  <p>Skybase is a paragliding companion app for iPhone and Android that answers
+     the two questions every free-flight pilot has: <em>“should I fly today?”</em>
+     and <em>“how is my flight going right now?”</em> — and then keeps the proof
+     in a standards-compliant logbook. It is built, operated, and flown weekly by
+     its developer.</p>
+
+  <div class="grid">
+    <div class="card"><h3>Before the flight</h3>
+      <p>Multi-model weather, wind aloft, thermal forecasts, and honest per-site
+         go/no-go scores tuned to your skill tier — all cached for offline use
+         at the hill.</p></div>
+    <div class="card"><h3>In the air</h3>
+      <p>A full instrument: audio vario, moving map with airspace, glide range
+         to landing zones, XC waypoints, and a flight recorder that keeps
+         logging with the screen off.</p></div>
+    <div class="card"><h3>After landing</h3>
+      <p>IGC flight logs (the sport's standard format), a barogram replay with
+         3D follow camera, post-flight debriefs, and personal thermal maps
+         built from your own tracks.</p></div>
+    <div class="card"><h3>Safety chain</h3>
+      <p>Glide-to-safety tools are free forever. An optional overdue watch can
+         text one designated emergency contact if you don't check in after a
+         flight — see the <a href="sms-opt-in.html">SMS program</a>.</p></div>
+  </div>
+
+  <div class="shots">
+    <figure><img src="img/app-site-score.png" alt="Skybase site screen with weather-based flyability score" /><figcaption>Site intelligence &amp; go/no-go score</figcaption></figure>
+    <figure><img src="img/app-flight.png" alt="Skybase in-flight instrument with map, vario and glide information" /><figcaption>The in-flight instrument</figcaption></figure>
+  </div>
+
+  <h2>Availability</h2>
+  <p>Skybase 0.1.0 is in the final stretch of store review: submitted to the
+     Apple&nbsp;App&nbsp;Store (July&nbsp;2026) and in closed testing on
+     Google&nbsp;Play. Want early access? Email
+     <a href="mailto:kajoadv@gmail.com">kajoadv@gmail.com</a> for a beta invite
+     (TestFlight on iOS, Play closed test on Android).</p>
+
+  <h2>The SMS safety program</h2>
+  <p>Skybase's one use of SMS is a low-volume, opt-in safety alert: if a pilot
+     enables the overdue watch and fails to check in after a flight, their
+     single designated emergency contact receives an automated text with the
+     pilot's last known position. No marketing, ever; STOP always honored.
+     The complete consent workflow, with in-app screenshots and message
+     samples, is documented at
+     <a href="sms-opt-in.html">SMS Program &amp; Opt-In Flow</a>.</p>
+
+  <h2>About</h2>
+  <div class="box">
+    <p><strong>Skybase</strong> is operated by <strong>Karel Plevac</strong>,
+       sole proprietor, doing business as Skybase (Oregon, USA). It is a
+       one-person operation: the developer is a paraglider pilot and the app's
+       first daily user. Support and all inquiries:
+       <a href="mailto:kajoadv@gmail.com">kajoadv@gmail.com</a>.</p>
+  </div>
+
+  <footer class="muted">
+    <p>
+      <a href="privacy.html">Privacy Policy</a> ·
+      <a href="terms.html">Terms &amp; Conditions</a> ·
+      <a href="sms-opt-in.html">SMS Program &amp; Opt-In</a> ·
+      <a href="delete-data.html">Delete Your Data</a><br/>
+      © 2026 Karel Plevac (dba Skybase) · <a href="mailto:kajoadv@gmail.com">kajoadv@gmail.com</a>
+    </p>
+  </footer>
 </body>
 </html>
