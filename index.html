@@ -3,100 +3,325 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Skybase — Paragliding weather, instrument &amp; flight log</title>
-<meta name="description" content="Skybase is an offline-first paragliding companion: pre-flight weather and site intelligence, an in-flight vario/XC instrument, an IGC logbook, and an opt-in SMS safety chain. Operated by Karel Plevac, sole proprietor." />
+<title>Skybase — the paragliding companion: weather, instrument &amp; logbook</title>
+<meta name="description" content="Skybase is an offline-first paragliding app that helps you decide if, when and where to fly — then flies with you as a sun-readable vario/map instrument and logs every flight. Weather &amp; go/no-go site scores, thermal forecasts, airspace, XC, IGC logbook, and an opt-in safety chain. Built by a pilot." />
+<meta property="og:title" content="Skybase — paragliding weather, instrument &amp; logbook" />
+<meta property="og:description" content="Decide if/when/where to fly, then fly with a sun-readable phone instrument and log it. Offline-first. Built by a pilot." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://skybase.getlostadv.com/" />
+<meta name="theme-color" content="#7fb8a0" />
 <style>
-  :root { color-scheme: light dark; }
-  body { font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-         max-width: 860px; margin: 0 auto; padding: 40px 20px; color: #1a1a1a; background: #fff; }
-  @media (prefers-color-scheme: dark) { body { color: #e8e8e8; background: #16181d; } a { color: #6cb6ff; } }
-  h1 { font-size: 2.2rem; margin-bottom: 0.1em; }
-  h2 { font-size: 1.2rem; margin-top: 2em; }
-  a { color: #2E86C9; }
-  .tagline { font-size: 1.15rem; color: #666; margin-top: 0; }
-  @media (prefers-color-scheme: dark) { .tagline { color: #aaa; } }
-  .muted { color: #888; font-size: 0.9rem; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 24px 0; }
-  .card { border: 1px solid #ccc4; border-radius: 10px; padding: 14px 18px; }
-  .card h3 { margin: 0 0 6px; font-size: 1rem; }
-  .card p { margin: 0; font-size: 0.95rem; color: #555; }
-  @media (prefers-color-scheme: dark) { .card p { color: #b5b5b5; } }
-  .shots { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 28px 0; }
-  .shots figure { margin: 0; text-align: center; }
-  .shots img { width: 240px; max-width: 42vw; border: 1px solid #ccc6; border-radius: 16px; }
-  .shots figcaption { font-size: 0.85rem; color: #888; margin-top: 6px; }
-  .box { border: 1px solid #ccc4; border-radius: 8px; padding: 12px 16px; margin: 16px 0; }
-  footer { margin-top: 3em; padding-top: 1.2em; border-top: 1px solid #ccc4; }
+  :root{
+    color-scheme: light dark;
+    --bg:#f5f8f4; --surface:#ffffff; --surface2:#eaf1ea; --ink:#18211c; --ink2:#4b5a51;
+    --muted:#7c8a80; --line:#d9e4da; --brand:#2e8b63; --brand-ink:#1f6b4a; --sky:#2e86c9;
+    --warn:#b06a1c; --radius:16px; --maxw:1080px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#12160f; --surface:#171d15; --surface2:#1d251b; --ink:#e9efe8; --ink2:#b6c2b7;
+      --muted:#8a978c; --line:#2a352a; --brand:#5cc494; --brand-ink:#7fd6ac; --sky:#6cb6ff; }
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--bg); color:var(--ink); overflow-x:hidden;
+    font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,p{ overflow-wrap:break-word; }
+  a{ color:var(--brand-ink); }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 20px; }
+  h1,h2,h3{ line-height:1.2; letter-spacing:-0.01em; }
+  h2{ font-size:1.9rem; margin:0 0 .3em; }
+  h3{ font-size:1.15rem; margin:0 0 .3em; }
+  .sub{ color:var(--ink2); font-size:1.05rem; }
+  .eyebrow{ text-transform:uppercase; letter-spacing:.12em; font-size:.78rem; font-weight:800;
+    color:var(--brand); margin:0 0 .5em; }
+
+  /* header */
+  header.nav{ position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.4) blur(10px);
+    background:color-mix(in srgb, var(--bg) 82%, transparent); border-bottom:1px solid var(--line); }
+  .nav .wrap{ display:flex; align-items:center; gap:16px; height:62px; }
+  .brandmark{ display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.15rem; color:var(--ink); text-decoration:none; }
+  .brandmark img{ width:30px; height:30px; border-radius:8px; }
+  .nav nav{ margin-left:auto; display:flex; gap:20px; align-items:center; }
+  .nav nav a{ color:var(--ink2); text-decoration:none; font-size:.95rem; font-weight:600; }
+  .nav nav a:hover{ color:var(--ink); }
+  .btn{ display:inline-block; background:var(--brand); color:#fff !important; text-decoration:none;
+    font-weight:700; padding:10px 18px; border-radius:999px; font-size:.95rem; border:1px solid transparent; }
+  .btn.ghost{ background:transparent; color:var(--brand-ink) !important; border-color:var(--line); }
+  .btn:hover{ filter:brightness(1.05); }
+  @media (max-width:760px){ .nav nav a.hidesm{ display:none; } }
+
+  /* hero */
+  .hero{ background:
+      radial-gradient(1200px 500px at 70% -10%, color-mix(in srgb, var(--sky) 22%, transparent), transparent),
+      linear-gradient(180deg, var(--surface2), var(--bg)); border-bottom:1px solid var(--line); }
+  .hero .wrap{ display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center; padding:64px 20px 56px; }
+  .hero .wrap > *{ min-width:0; }
+  .hero h1{ font-size:3rem; margin:.1em 0 .35em; }
+  .hero p.lead{ font-size:1.2rem; color:var(--ink2); margin:0 0 1.4em; max-width:36ch; }
+  .qchips{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 1.6em; }
+  .qchips span{ background:var(--surface); border:1px solid var(--line); border-radius:999px;
+    padding:6px 13px; font-size:.9rem; font-weight:600; color:var(--ink2); }
+  .cta{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+  .cta small{ color:var(--muted); font-size:.85rem; }
+  .phone{ justify-self:center; width:100%; max-width:300px; border-radius:34px; border:1px solid var(--line);
+    box-shadow:0 30px 60px -20px rgba(20,40,30,.35), 0 8px 20px -8px rgba(0,0,0,.2); display:block; }
+  @media (max-width:820px){ .hero .wrap{ grid-template-columns:1fr; text-align:center; padding:44px 20px; }
+    .hero h1{ font-size:2.05rem; } .hero p.lead{ margin-inline:auto; max-width:32ch; } .qchips{ justify-content:center; }
+    .cta{ justify-content:center; } .phone{ max-width:250px; margin-top:8px; } }
+
+  /* generic section */
+  section{ padding:64px 0; border-bottom:1px solid var(--line); }
+  section.alt{ background:var(--surface); }
+  .split{ display:grid; grid-template-columns:1fr 340px; gap:44px; align-items:center; }
+  .split.rev{ grid-template-columns:340px 1fr; }
+  .split > *{ min-width:0; }
+  .split .shot{ width:100%; border-radius:26px; border:1px solid var(--line); box-shadow:0 20px 44px -22px rgba(20,40,30,.3); }
+  @media (max-width:820px){ .split,.split.rev{ grid-template-columns:1fr; } .split .shot{ max-width:280px; margin:0 auto; order:-1; } }
+
+  .cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-top:20px; }
+  .card{ background:var(--bg); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; }
+  section.alt .card{ background:var(--surface2); }
+  .card h3{ display:flex; align-items:center; gap:8px; }
+  .card p{ margin:.2em 0 0; font-size:.96rem; color:var(--ink2); }
+  .ico{ font-size:1.2rem; }
+
+  .note{ font-size:.9rem; color:var(--muted); margin-top:14px; }
+  .badge{ display:inline-block; font-size:.72rem; font-weight:800; letter-spacing:.04em; text-transform:uppercase;
+    padding:2px 8px; border-radius:6px; background:color-mix(in srgb,var(--brand) 16%,transparent); color:var(--brand-ink); vertical-align:middle; }
+  .badge.soon{ background:color-mix(in srgb,var(--warn) 18%,transparent); color:var(--warn); }
+
+  /* honest block */
+  .honest{ background:var(--surface2); }
+  .honest .box{ border:1px solid var(--line); background:var(--surface); border-radius:var(--radius); padding:22px 24px; }
+  .honest ul{ margin:.4em 0 0; padding-left:1.1em; }
+  .honest li{ margin:.5em 0; color:var(--ink2); }
+  .honest li b{ color:var(--ink); }
+
+  /* availability */
+  .avail{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:22px; }
+  .avail .plat{ border:1px solid var(--line); border-radius:var(--radius); padding:20px 22px; background:var(--bg); }
+  section.alt .avail .plat{ background:var(--surface2); }
+  .avail h3{ margin-bottom:.2em; }
+  .status{ font-size:.85rem; font-weight:700; color:var(--warn); }
+  @media (max-width:680px){ .avail{ grid-template-columns:1fr; } }
+
+  footer{ padding:40px 0 56px; background:var(--surface); }
+  footer .cols{ display:flex; flex-wrap:wrap; gap:10px 26px; align-items:center; }
+  footer a{ color:var(--ink2); text-decoration:none; font-size:.92rem; }
+  footer a:hover{ color:var(--ink); }
+  footer .fine{ color:var(--muted); font-size:.85rem; margin-top:14px; }
+  code{ background:var(--surface2); padding:1px 5px; border-radius:5px; font-size:.9em; }
 </style>
 </head>
 <body>
-  <h1>Skybase</h1>
-  <p class="tagline">Paragliding weather, go/no-go site scores, vario, XC &amp; IGC log — offline-first.</p>
 
-  <p>Skybase is a paragliding companion app for iPhone and Android that answers
-     the two questions every free-flight pilot has: <em>“should I fly today?”</em>
-     and <em>“how is my flight going right now?”</em> — and then keeps the proof
-     in a standards-compliant logbook. It is built, operated, and flown weekly by
-     its developer.</p>
-
-  <div class="grid">
-    <div class="card"><h3>Before the flight</h3>
-      <p>Multi-model weather, wind aloft, thermal forecasts, and honest per-site
-         go/no-go scores tuned to your skill tier — all cached for offline use
-         at the hill.</p></div>
-    <div class="card"><h3>In the air</h3>
-      <p>A full instrument: audio vario, moving map with airspace, glide range
-         to landing zones, XC waypoints, and a flight recorder that keeps
-         logging with the screen off.</p></div>
-    <div class="card"><h3>After landing</h3>
-      <p>IGC flight logs (the sport's standard format), a barogram replay with
-         3D follow camera, post-flight debriefs, and personal thermal maps
-         built from your own tracks.</p></div>
-    <div class="card"><h3>Safety chain</h3>
-      <p>Glide-to-safety tools are free forever. An optional overdue watch can
-         text one designated emergency contact if you don't check in after a
-         flight — see the <a href="sms-opt-in.html">SMS program</a>.</p></div>
+<header class="nav">
+  <div class="wrap">
+    <a class="brandmark" href="#top"><img src="img/web-icon.png" alt="" /> Skybase</a>
+    <nav>
+      <a class="hidesm" href="#preflight">Pre-flight</a>
+      <a class="hidesm" href="#inflight">In-flight</a>
+      <a class="hidesm" href="#logbook">Logbook</a>
+      <a class="hidesm" href="#safety">Safety</a>
+      <a class="hidesm" href="#honest">Honesty</a>
+      <a class="btn" href="#get">Get the app</a>
+    </nav>
   </div>
+</header>
 
-  <div class="shots">
-    <figure><img src="img/app-site-score.png" alt="Skybase site screen with weather-based flyability score" /><figcaption>Site intelligence &amp; go/no-go score</figcaption></figure>
-    <figure><img src="img/app-flight.png" alt="Skybase in-flight instrument with map, vario and glide information" /><figcaption>The in-flight instrument</figcaption></figure>
+<a id="top"></a>
+<section class="hero" style="border-bottom:1px solid var(--line);padding:0">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Paragliding companion · offline-first</p>
+      <h1>Know if it's on. Fly it. Log it.</h1>
+      <p class="lead">Skybase answers the three questions every free-flight pilot has — then flies with you and keeps the record.</p>
+      <div class="qchips">
+        <span>☀️ Should I fly today?</span>
+        <span>🌀 Will there be lift?</span>
+        <span>🪂 How's my flight going?</span>
+      </div>
+      <div class="cta">
+        <a class="btn" href="#get">Get early access</a>
+        <a class="btn ghost" href="#preflight">See what it does</a>
+      </div>
+      <p style="margin-top:14px"><small style="color:var(--muted)">Built and flown by a working pilot. No accounts. Your data stays on your phone.</small></p>
+    </div>
+    <img class="phone" src="img/web-sitescore.jpg" alt="Skybase site screen showing a go/no-go score and factor breakdown" />
   </div>
+</section>
 
-  <h2>Availability</h2>
-  <p>Skybase 0.1.0 is in the final stretch of store review: submitted to the
-     Apple&nbsp;App&nbsp;Store (July&nbsp;2026) and in closed testing on
-     Google&nbsp;Play. Want early access? Email
-     <a href="mailto:kajoadv@gmail.com">kajoadv@gmail.com</a> for a beta invite
-     (TestFlight on iOS, Play closed test on Android).</p>
-
-  <h2>The SMS safety program</h2>
-  <p>Skybase's one use of SMS is a low-volume, opt-in safety alert: if a pilot
-     enables the overdue watch and fails to check in after a flight, their
-     single designated emergency contact receives an automated text with the
-     pilot's last known position. No marketing, ever; STOP always honored.
-     The complete consent workflow, with in-app screenshots and message
-     samples, is documented at
-     <a href="sms-opt-in.html">SMS Program &amp; Opt-In Flow</a>.</p>
-
-  <h2>About</h2>
-  <div class="box">
-    <p><strong>Skybase</strong> is operated by <strong>Karel Plevac</strong>,
-       sole proprietor (Oregon, USA), whose adventure brand is
-       <strong>GetLostAdv</strong> — this site lives on the GetLostAdv domain
-       (<code>skybase.getlostadv.com</code>). It is a one-person operation: the
-       developer is a paraglider pilot and the app's first daily user. Support
-       and all inquiries: <a href="mailto:kajoadv@gmail.com">kajoadv@gmail.com</a>.</p>
+<!-- WHAT IT IS -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">What Skybase is</p>
+    <h2 style="max-width:22ch">One app for the whole flight — from the forecast to the logbook.</h2>
+    <p class="sub" style="max-width:70ch">Most pilots juggle a weather site, a separate vario app, a map, and a spreadsheet. Skybase brings the whole loop into one place: <b>pre-flight weather &amp; site intelligence</b>, an <b>in-flight instrument</b> (audio vario, moving map, glide, XC), and an <b>IGC logbook</b> with replay — all working <b>offline at the hill</b>, tuned to <b>your skill level</b>, from student to advanced.</p>
+    <p class="sub" style="max-width:70ch;margin-top:12px"><b>It's decision support, never a clearance.</b> Every score, window, thermal and wind read is an aid — the reasoning is always shown so you can disagree with it. You make the go/no-go call and carry current charts.</p>
   </div>
+</section>
 
-  <footer class="muted">
-    <p>
-      <a href="privacy.html">Privacy Policy</a> ·
-      <a href="terms.html">Terms &amp; Conditions</a> ·
-      <a href="sms-opt-in.html">SMS Program &amp; Opt-In</a> ·
-      <a href="delete-data.html">Delete Your Data</a><br/>
-      © 2026 Karel Plevac (dba Skybase) · <a href="mailto:kajoadv@gmail.com">kajoadv@gmail.com</a>
-    </p>
-  </footer>
+<!-- PRE-FLIGHT -->
+<a id="preflight"></a>
+<section class="alt">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Before you drive to launch</p>
+        <h2>Decide if, when &amp; where to fly</h2>
+        <p class="sub">Open a site and see the next 24 hours at a glance — a plain-language read of the conditions, not just a number.</p>
+        <div class="cards">
+          <div class="card"><h3><span class="ico">🎯</span>Go/no-go score</h3><p>0–100 with green / yellow / red and a full factor breakdown: wind direction &amp; speed, gust factor, precip, cloud base, overdevelopment, time to sunset. The reasoning is always visible.</p></div>
+          <div class="card"><h3><span class="ico">⏱️</span>Best window today</h3><p>The longest workable daytime run — and it's daylight-gated, so a launch never suggests a 2&nbsp;AM window.</p></div>
+          <div class="card"><h3><span class="ico">🌀</span>Thermal forecast</h3><p>Will there be lift or a sled ride? Estimated climb strength, the working band, and when thermals switch on and off. Labelled an estimate, because it is one.</p></div>
+          <div class="card"><h3><span class="ico">💨</span>Live wind nearby</h3><p>Real anemometer readings from free community &amp; government networks (Pioupiou + NOAA/NWS), closest-first, with reading age — ground truth to sanity-check the forecast.</p></div>
+          <div class="card"><h3><span class="ico">🧗</span>Hike &amp; fly planner</h3><p>Estimates the hike up to launch (distance + ascent → time) and tells you when to leave to make the flyable window before sunset.</p></div>
+          <div class="card"><h3><span class="ico">🛡️</span>Airspace warnings</h3><p>Loads real airspace zones and warns near them — advisory only, never a substitute for your pre-flight chart &amp; NOTAM check.</p></div>
+        </div>
+        <p class="note">Skill-aware: students get tighter wind/gust caps and more "explain this metric" help; advanced pilots get more headroom. Weather is free, global Open-Meteo data (no key), cached so it works offline at the hill.</p>
+      </div>
+      <img class="shot" src="img/web-weather.jpg" alt="Skybase weather outlook and soaring forecast for a site" />
+    </div>
+  </div>
+</section>
+
+<!-- IN-FLIGHT -->
+<a id="inflight"></a>
+<section>
+  <div class="wrap">
+    <div class="split rev">
+      <img class="shot" src="img/web-inflight.jpg" alt="Skybase in-flight instrument — moving map, vario and glide readouts" />
+      <div>
+        <p class="eyebrow">In the air</p>
+        <h2>A sun-readable instrument in your pocket</h2>
+        <p class="sub">Stow the phone and fly. The screen flips to a high-contrast flight theme with huge digits, big touch targets, and audio you don't need to look at.</p>
+        <div class="cards">
+          <div class="card"><h3><span class="ico">🔊</span>Audio vario</h3><p>Climb beeps with cadence <em>and</em> pitch, plus a tunable sink alarm — GPS + barometer fused through a Kalman filter that self-calibrates, GPS-only fallback when there's no baro.</p></div>
+          <div class="card"><h3><span class="ico">🧭</span>Heading-up map</h3><p>The map rotates so your direction is always up; the wind rose stays north-up so wind still reads true. Recenter with one tap; pan to look around and it holds.</p></div>
+          <div class="card"><h3><span class="ico">📐</span>Glide &amp; nearest LZ</h3><p>A final-glide reach cone and glide-to-nearest-landing readout — a free safety aid, always on.</p></div>
+          <div class="card"><h3><span class="ico">🗺️</span>XC &amp; navigation</h3><p>Set a GOTO target or import a task (XCTrack <code>.xctsk</code> / SeeYou <code>.cup</code>); see distance, bearing, ETA and turnpoint cylinders in the air.</p></div>
+          <div class="card"><h3><span class="ico">🎚️</span>Your layout</h3><p>Long-press any readout to move, resize or hide it — three layout pages, with optional glove-friendly auto-switch between a thermal page and a glide page.</p></div>
+          <div class="card"><h3><span class="ico">🔋</span>Records with the screen off</h3><p>Keeps logging in the background so battery lasts. A one-time in-app disclosure explains exactly why it needs background location before it's ever asked for.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGBOOK / AFTER -->
+<a id="logbook"></a>
+<section class="alt">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow">After you land</p>
+        <h2>Relive it, learn from it, keep it forever</h2>
+        <p class="sub">Every flight is saved as an IGC track — the sport's universal format — and comes to life in a full replay.</p>
+        <div class="cards">
+          <div class="card"><h3><span class="ico">▶️</span>Full-screen replay</h3><p>Scrub a colour-coded altitude barogram, play the track back at speed, follow a tilted camera down your line, and tip into a 3D terrain view.</p></div>
+          <div class="card"><h3><span class="ico">📓</span>Logbook &amp; stats</h3><p>Career totals — flights, air time, max altitude &amp; climb, sites, distance, best XC — plus achievements as you hit milestones.</p></div>
+          <div class="card"><h3><span class="ico">🧠</span>A forecast that learns from you</h3><p>An AI thermal forecast trained on <em>your own</em> flights — it predicts a day's climbs from your most similar past days, and <b>grades its own track record</b> honestly (no hindsight in the maths).</p></div>
+          <div class="card"><h3><span class="ico">📤</span>No lock-in</h3><p>One-tap export of every flight, site, wing and route as open JSON; share any flight's IGC to SeeYou / XCSoar or your XC league.</p></div>
+        </div>
+      </div>
+      <img class="shot" src="img/web-replay.jpg" alt="Skybase full-screen flight replay with barogram scrubber" />
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY -->
+<a id="safety"></a>
+<section>
+  <div class="wrap">
+    <div class="split rev">
+      <img class="shot" src="img/web-safety.jpg" alt="Skybase emergency contact and overdue auto-alert card" />
+      <div>
+        <p class="eyebrow">Safety — free, and never paywalled</p>
+        <h2>A quiet safety net behind every flight</h2>
+        <p class="sub">The tools that keep you alive stay free forever. Sharing is always opt-in and off by default.</p>
+        <div class="cards">
+          <div class="card"><h3><span class="ico">✅</span>Pre-flight checklist</h3><p>A site-aware checklist that resets overnight — so "did I do up my leg straps?" has an answer.</p></div>
+          <div class="card"><h3><span class="ico">🪂</span>Gear log &amp; repack reminders</h3><p>Track your wing, harness and reserve; get a local reminder before your reserve repack is due.</p></div>
+          <div class="card"><h3><span class="ico">🆘</span>SOS &amp; overdue alert</h3><p>One tap texts your emergency contact your position. An optional overdue watch can auto-alert them if you don't check in after a flight — opt-in, with the contact's consent.</p></div>
+          <div class="card"><h3><span class="ico">👥</span>Fly with friends</h3><p>Share your live position with a private group and get converging-traffic alerts — but only from other Skybase pilots who are also sharing, not all air traffic. We say so, in the app.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HONEST BY DESIGN -->
+<a id="honest"></a>
+<section class="honest">
+  <div class="wrap">
+    <p class="eyebrow">Honest by design</p>
+    <h2 style="max-width:24ch">The stuff most app pages leave out</h2>
+    <div class="box" style="margin-top:18px">
+      <ul>
+        <li><b>Decision support, not authoritative.</b> Windows are labelled <em>good / marginal / not recommended</em> — never "safe." You make the call; carry your charts.</li>
+        <li><b>Offline-first &amp; private.</b> Everything lives in on-device storage. No accounts, nothing sold, no analytics/tracking SDKs. The only things that ever leave your phone are features you switch on — live tracking, buddy sharing, or the SOS alert — and only while a flight is recording.</li>
+        <li><b>Estimates are labelled as estimates.</b> The thermal forecast is conservative and says so; the AI model shows its real hit-rate against your flights, good scores and bad.</li>
+        <li><b>One person builds this.</b> The cloud features run on a solo developer's small free-tier infrastructure with no uptime guarantee — and the app <em>shows</em> you when a cloud feature is down instead of failing silently. On-device features need no server at all.</li>
+        <li><b>Your phone has limits too.</b> The in-app manual is candid about heat throttling in direct sun, cold-battery death at altitude, and why a backup vario is wise.</li>
+        <li><b>Free stays useful.</b> The instrument, sites, weather, logbook and all safety tools are free forever. <span class="badge soon">Coming soon</span> A Skybase&nbsp;Pro tier will unlock the cloud/advanced band (live tracking, soundings, XC nav, conditions sync, SOS auto-alert) — subscriptions aren't live yet, so there's no purchase to make today.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- GET THE APP -->
+<a id="get"></a>
+<section class="alt">
+  <div class="wrap">
+    <p class="eyebrow">Get Skybase</p>
+    <h2>Early access — be one of the first to fly it</h2>
+    <p class="sub" style="max-width:64ch">Skybase is in its first public release run. It's on <b>TestFlight</b> for iPhone and in <b>closed testing</b> on Google&nbsp;Play for Android right now, with the App&nbsp;Store and Play store listings in review.</p>
+    <div class="avail">
+      <div class="plat">
+        <h3>🍎 iPhone / iPad</h3>
+        <p class="status">In App Store review · TestFlight beta open</p>
+        <p class="sub" style="font-size:.98rem">Join the beta through Apple's TestFlight — install the free TestFlight app, then open the invite link.</p>
+      </div>
+      <div class="plat">
+        <h3>🤖 Android</h3>
+        <p class="status">Closed testing on Google Play</p>
+        <p class="sub" style="font-size:.98rem">Android testers get in via a Google Play opt-in link (your Play-Store email is added to the tester list first).</p>
+      </div>
+    </div>
+    <p style="margin-top:22px"><a class="btn" href="mailto:kajoadv@gmail.com?subject=Skybase%20beta%20invite">Email for a beta invite</a></p>
+    <p class="note">Want in? Email <a href="mailto:kajoadv@gmail.com">kajoadv@gmail.com</a> with your platform (and, for Android, the Gmail your Play Store uses). We'll send the right link.</p>
+  </div>
+</section>
+
+<!-- FAQ (short) -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Good to know</p>
+    <h2>A few honest answers</h2>
+    <div class="cards" style="margin-top:8px">
+      <div class="card"><h3>Does it replace my vario?</h3><p>It's a capable phone vario (GPS + barometer). For serious XC, treat it as a smart companion and carry a dedicated backup — the manual explains why.</p></div>
+      <div class="card"><h3>Does it work with no signal?</h3><p>Yes — the instrument, logbook, and cached weather all work offline. Live weather refresh and the opt-in cloud features need a connection.</p></div>
+      <div class="card"><h3>Do I need an account?</h3><p>No. There are no accounts and no login — everything works on-device the moment you install.</p></div>
+      <div class="card"><h3>Who makes it?</h3><p>Karel&nbsp;Plevac — a paraglider pilot and the app's first daily user, under the GetLostAdv brand (this site's domain).</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <a class="brandmark" href="#top" style="font-size:1rem"><img src="img/web-icon.png" alt="" style="width:24px;height:24px" /> Skybase</a>
+      <span style="flex:1"></span>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="sms-opt-in.html">SMS Program</a>
+      <a href="delete-data.html">Delete Your Data</a>
+      <a href="mailto:kajoadv@gmail.com">Contact</a>
+    </div>
+    <p class="fine">Skybase is a paragliding companion app operated by <b>Karel Plevac</b>, sole proprietor (dba GetLostAdv), Oregon, USA. Decision support only — not authoritative; always make your own go/no-go call and carry current charts. © 2026 Karel Plevac. <code>skybase.getlostadv.com</code></p>
+  </div>
+</footer>
+
 </body>
 </html>
