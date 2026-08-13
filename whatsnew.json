@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "note": "Consumed by the Skybase in-app update prompt (whatsNewFeed.ts). Regenerate the recent entries each ship. Served at skybase.getlostadv.com/whatsnew.json.",
+  "updates": [
+    {
+      "update": 89,
+      "title": "Tester Pro unlock",
+      "highlights": [
+        "Beta testers: enter your code in the paywall to unlock all of Pro, free"
+      ]
+    },
+    {
+      "update": 88,
+      "title": "Auto update checks",
+      "highlights": [
+        "Skybase now checks for a new version when you open it and offers a one-tap update",
+        "This very screen — what's new, before you install"
+      ]
+    },
+    {
+      "update": 86,
+      "title": "Provable safety chain",
+      "highlights": [
+        "See real proof your overdue auto-alert would reach a phone — delivery receipts, a contact reply-YES, and a Test-now self-test"
+      ]
+    },
+    {
+      "update": 83,
+      "title": "Branded Flight-saved card",
+      "highlights": ["A proper flight-summary card when you land, not a plain system pop-up"]
+    },
+    {
+      "update": 82,
+      "title": "Snappier flight start",
+      "highlights": ["Instant \"Starting your flight…\" feedback the moment you tap Start"]
+    },
+    {
+      "update": 81,
+      "title": "Lighter on memory & battery",
+      "highlights": ["Long-flight IGC logging and the 3D terrain map are easier on your phone"]
+    },
+    {
+      "update": 77,
+      "title": "3D terrain flight replay",
+      "highlights": ["Watch your flight float at its true altitude over satellite 3D terrain, orbit it 360°"]
+    }
+  ]
+}
