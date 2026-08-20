@@ -25,8 +25,8 @@
   header .brand span{ color:var(--brand); }
   .btn{ background:var(--brand); color:#fff; text-decoration:none; font-weight:700;
     padding:8px 14px; border-radius:10px; font-size:.9rem; white-space:nowrap; }
-  #map{ flex:1 1 auto; min-height:0; background:#0c0f0a; }
-  .leaflet-container{ background:#0c0f0a; }
+  #map{ flex:1 1 auto; min-height:0; background:#e6eae0; }
+  .leaflet-container{ background:#e6eae0; }
   #controls{ display:flex; align-items:center; gap:12px; padding:10px 16px;
     border-top:1px solid var(--line); background:var(--panel); }
   #play{ appearance:none; border:none; background:var(--brand); color:#fff; font-weight:800;
@@ -127,8 +127,14 @@ function render(row){
   // Map + track
   const latlngs = track.map(p=>[p.lat, p.lon]);
   const map = L.map('map', { zoomControl:true, attributionControl:true });
+  // Reliable OSM base UNDER the terrain layer: OpenTopoMap is prettier but flaky/
+  // rate-limited, so where a terrain tile is missing/slow the standard OSM tile
+  // shows through instead of a blank gap. keepBuffer holds more off-screen tiles
+  // so panning/zoom shows fewer holes.
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom:19, keepBuffer:4, attribution:'© OpenStreetMap' }).addTo(map);
   L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-    maxZoom:17, attribution:'© OpenTopoMap (CC-BY-SA) · © OpenStreetMap' }).addTo(map);
+    maxZoom:17, keepBuffer:4, attribution:'© OpenTopoMap (CC-BY-SA) · © OpenStreetMap' }).addTo(map);
   map.fitBounds(L.latLngBounds(latlngs).pad(0.15));
   L.polyline(latlngs, { color:'#2e8b63', weight:3, opacity:.55 }).addTo(map);      // full faint track
   const trail = L.polyline([], { color:'#5ad6a0', weight:4 }).addTo(map);           // drawn-so-far
