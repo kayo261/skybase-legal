@@ -3,6 +3,14 @@
   "note": "Consumed by the Skybase in-app update prompt (whatsNewFeed.ts). Entries NEWER than the installed update number are shown, so this must be regenerated every ship — a stale feed makes the prompt show nothing. Served at skybase.getlostadv.com/whatsnew.json.",
   "updates": [
     {
+      "update": 218,
+      "title": "Home Logbook matches the Career card",
+      "highlights": [
+        "The Logbook summary on your Home screen now uses the same tidy layout as the Career card — each stat with a small icon, centred in its own column",
+        "Cosmetic only: the 'most recent flight' line underneath is unchanged"
+      ]
+    },
+    {
       "update": 217,
       "title": "A tidier Career card",
       "highlights": [
