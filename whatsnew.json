@@ -1,7 +1,161 @@
 {
   "version": 1,
-  "note": "Consumed by the Skybase in-app update prompt (whatsNewFeed.ts). Regenerate the recent entries each ship. Served at skybase.getlostadv.com/whatsnew.json.",
+  "note": "Consumed by the Skybase in-app update prompt (whatsNewFeed.ts). Entries NEWER than the installed update number are shown, so this must be regenerated every ship — a stale feed makes the prompt show nothing. Served at skybase.getlostadv.com/whatsnew.json.",
   "updates": [
+    {
+      "update": 216,
+      "title": "Every flight says where you flew",
+      "highlights": [
+        "Your logbook now names the site under each flight's date — worked out from where your track starts, matched against your own sites list",
+        "Nothing to fill in, and flights you recorded months ago get their names too",
+        "Career → Sites used to read 0 however many hills you'd flown; it counts properly now, and the Explorer / Wanderer / Globetrotter badges are finally earnable"
+      ]
+    },
+    {
+      "update": 215,
+      "title": "This list works again",
+      "highlights": [
+        "The ‘what's new’ bullets in this pop-up had quietly stopped listing anything — fixed",
+        "Learn → Explain the metrics now covers Max climb"
+      ]
+    },
+    {
+      "update": 214,
+      "title": "Easier to find help",
+      "highlights": [
+        "The Logbook's ‘Fix or recover a flight’ button now stands out with its own heading and colour — it was easy to scroll past"
+      ]
+    },
+    {
+      "update": 213,
+      "title": "Tidier Logbook",
+      "highlights": [
+        "The repair tools (check for unsaved flights, recheck stats, recheck airtime) now sit behind one ‘Fix or recover a flight’ button",
+        "If Skybase actually finds a hidden or unsaved flight, it still tells you right on the Logbook"
+      ]
+    },
+    {
+      "update": 212,
+      "title": "Type the date when logging a flight by hand",
+      "highlights": [
+        "The date field used to move one day at a time — now you just type day, month and year",
+        "It reads the full date back so you can check it before saving"
+      ]
+    },
+    {
+      "update": 211,
+      "title": "Clearer ‘nothing to recover’",
+      "highlights": [
+        "The all-clear now names both things it checked: leftover track files, and flights hidden under an unfinished profile"
+      ]
+    },
+    {
+      "update": 210,
+      "title": "Missing flights found",
+      "highlights": [
+        "Starting a flight in the first instant after opening Skybase could save it under a profile that hadn't finished loading — hiding it from your logbook",
+        "Open your Logbook: if any are affected you'll see ‘Restore hidden flights’, and one tap brings them back with their full track and stats",
+        "New flights can no longer end up in that state"
+      ]
+    },
+    {
+      "update": 209,
+      "title": "Give a friend their lost flight back",
+      "highlights": [
+        "If another Skybase pilot was sharing near you, open that flight and use ‘Send <name> their track’ to build an .igc they can import",
+        "It's a coarser copy than their own recording — about one position every 8 seconds — so their distances read a little low"
+      ]
+    },
+    {
+      "update": 208,
+      "title": "Automatic trimming removed",
+      "highlights": [
+        "Your flight clock now runs from the moment you tap Start, and your full track is always kept",
+        "Trimming the ground wait is still there where you can see it: ‘Trim flight time’ on a flight, or ‘Recheck airtime’ for the whole logbook"
+      ]
+    },
+    {
+      "update": 207,
+      "title": "Updating no longer closes the app",
+      "highlights": [
+        "On some Android phones tapping ‘Update now’ could shut Skybase down instead of restarting it",
+        "Nothing was ever lost — the update was already saved and applied next time you opened it"
+      ]
+    },
+    {
+      "update": 206,
+      "title": "The update pop-up says which one it is",
+      "highlights": [
+        "Skybase's own ‘Update available’ card now names itself, so it can't be confused with the App Store or Play Store's"
+      ]
+    },
+    {
+      "update": 204,
+      "title": "A no-fly day now says why",
+      "highlights": [
+        "In the 5-day outlook, a day with no flyable hour used to show an empty box that looked like a broken app",
+        "Those days are now red and name what stopped them — Too windy, Gusty, Wrong wind, Low cloud, Rain or Storm"
+      ]
+    },
+    {
+      "update": 203,
+      "title": "Max climb, actually fixed",
+      "highlights": [
+        "Climb is now read from your barometer — what a vario really measures — instead of GPS height, which jumps 10–15 m between readings"
+      ]
+    },
+    {
+      "update": 202,
+      "title": "Rating fixes",
+      "highlights": [
+        "A gust is judged on how much the wind really surges, not the ratio alone — light breezes no longer turn good afternoons red",
+        "Cloud base no longer contradicts itself, and the wind chip can't read greener than the day it sits above"
+      ]
+    },
+    {
+      "update": 201,
+      "title": "Safer site ratings",
+      "highlights": [
+        "A single serious hazard — rotor, wind off the back, over the site's limit, storms, cloud on the hill — can no longer be outvoted by good weather elsewhere",
+        "Expect fewer green hours. That's the fix, not a fault"
+      ]
+    },
+    {
+      "update": 200,
+      "title": "Accurate airtime for every flight",
+      "highlights": [
+        "Ground time before launch and after landing was counted as flying, inflating each flight and your career total",
+        "Logbook → ‘Recheck airtime’ finds the real launch-to-landing window and shows you the change before applying it"
+      ]
+    },
+    {
+      "update": 199,
+      "title": "Recheck every flight's stats",
+      "highlights": [
+        "Logbook → ‘Recheck flight stats’ re-measures every saved track so your list, career totals and achievements agree with your flights"
+      ]
+    },
+    {
+      "update": 198,
+      "title": "Shared flights report your real distances",
+      "highlights": [
+        "Distance, straight line, XC and max climb in a shared link are now measured from your track instead of older saved figures"
+      ]
+    },
+    {
+      "update": 191,
+      "title": "Share a flight as a web link",
+      "highlights": [
+        "Open a flight → ‘Share a web link’ and send friends a link they open in any browser — an animated replay of your track plus your stats, no app needed"
+      ]
+    },
+    {
+      "update": 188,
+      "title": "Stopping a flight always works now",
+      "highlights": [
+        "If you ever tapped ‘end flight’ and the Stop/Cancel box didn't appear, Skybase now uses its own confirmation card that always shows"
+      ]
+    },
     {
       "update": 89,
       "title": "Tester Pro unlock",
@@ -27,22 +181,30 @@
     {
       "update": 83,
       "title": "Branded Flight-saved card",
-      "highlights": ["A proper flight-summary card when you land, not a plain system pop-up"]
+      "highlights": [
+        "A proper flight-summary card when you land, not a plain system pop-up"
+      ]
     },
     {
       "update": 82,
       "title": "Snappier flight start",
-      "highlights": ["Instant \"Starting your flight…\" feedback the moment you tap Start"]
+      "highlights": [
+        "Instant \"Starting your flight…\" feedback the moment you tap Start"
+      ]
     },
     {
       "update": 81,
       "title": "Lighter on memory & battery",
-      "highlights": ["Long-flight IGC logging and the 3D terrain map are easier on your phone"]
+      "highlights": [
+        "Long-flight IGC logging and the 3D terrain map are easier on your phone"
+      ]
     },
     {
       "update": 77,
       "title": "3D terrain flight replay",
-      "highlights": ["Watch your flight float at its true altitude over satellite 3D terrain, orbit it 360°"]
+      "highlights": [
+        "Watch your flight float at its true altitude over satellite 3D terrain, orbit it 360°"
+      ]
     }
   ]
 }
