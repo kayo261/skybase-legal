@@ -3,6 +3,40 @@
   "note": "Consumed by the Skybase in-app update prompt (whatsNewFeed.ts). Entries NEWER than the installed update number are shown, so this must be regenerated every ship — a stale feed makes the prompt show nothing. Served at skybase.getlostadv.com/whatsnew.json.",
   "updates": [
     {
+      "update": 222,
+      "title": "Tap “Sites” to see them on a map",
+      "highlights": [
+        "Your Career “Sites” count is now tappable — open the full list of every site you've flown, with a map; tap a site to fly there",
+        "Fixed a bug that counted one hill as two sites (a hand-logged name plus a recorded flight there), so an over-counted total now reads right"
+      ]
+    },
+    {
+      "update": 221,
+      "title": "A typo won't become a new site",
+      "highlights": [
+        "Logging a flight by hand now offers the sites you've flown before — your sites list and names from earlier flights — as one-tap chips",
+        "Misspell one and a 'Did you mean …?' suggestion appears; tap it so the flight counts as the same site, not a new one",
+        "Nothing is auto-changed — two different hills with similar names stay separate"
+      ]
+    },
+    {
+      "update": 220,
+      "title": "Search sites by name when logging by hand",
+      "highlights": [
+        "Adding a flight manually? Type a site name (3+ letters) and Skybase searches OpenStreetMap for matching paragliding sites — tap one to use it",
+        "Your own sites still show as quick-fill chips; if nothing matches or you're offline, your typed name is saved as-is"
+      ]
+    },
+    {
+      "update": 219,
+      "title": "Name a flight's site — or look it up",
+      "highlights": [
+        "Open any flight and tap the 📍 line to name (or rename) the site — it shows on the flight and in your logbook, overriding the automatic match",
+        "Tap 'Look up from launch point' and Skybase finds the nearest paragliding site from OpenStreetMap, closest first with distances",
+        "No site tagged nearby? It falls back to the closest place name (a peak, ridge or village). Unverified — it just fills the box, you tap Save"
+      ]
+    },
+    {
       "update": 218,
       "title": "Home Logbook matches the Career card",
       "highlights": [
