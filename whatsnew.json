@@ -3,6 +3,61 @@
   "note": "Consumed by the Skybase in-app update prompt (whatsNewFeed.ts). Entries NEWER than the installed update number are shown, so this must be regenerated every ship — a stale feed makes the prompt show nothing. Served at skybase.getlostadv.com/whatsnew.json.",
   "updates": [
     {
+      "update": 229,
+      "title": "Wing colours go live between pilots",
+      "highlights": [
+        "The wing colour you pick is now shared with your buddies, so real pilots (not just the demo) show in their own wing colour on your map"
+      ]
+    },
+    {
+      "update": 228,
+      "title": "Colour-code buddies by wing colour",
+      "highlights": [
+        "Pick your wing colour in your profile (Settings → Flying groups) and buddies are colour-coded on the map so you can tell who's who",
+        "The climbing/sinking arrow is unchanged — the colour just tells you who",
+        "Try it now with the demo buddies, each in a different wing colour"
+      ]
+    },
+    {
+      "update": 227,
+      "title": "Live wind arrow on the site map too",
+      "highlights": [
+        "The site's map now shows a floating live-wind badge — the nearest station's wind arrow and speed, right on the terrain",
+        "The map and the 'Live wind nearby' card share one reading, so they always agree"
+      ]
+    },
+    {
+      "update": 226,
+      "title": "Live wind-direction arrow on the site page",
+      "highlights": [
+        "A site's 'Live wind nearby' card now shows a direction arrow for each station — see which way it's blowing at the launch at a glance",
+        "The arrow greys out when a reading is stale or offline"
+      ]
+    },
+    {
+      "update": 225,
+      "title": "Flight notes in the logbook + keyboard fix",
+      "highlights": [
+        "Your flight note now shows under each flight in the logbook list — handy for hand-logged flights where it's often the only context",
+        "Fixed the on-screen keyboard hiding the field while you type a note or a site name"
+      ]
+    },
+    {
+      "update": 224,
+      "title": "Vario sound on by default",
+      "highlights": [
+        "The audio vario (climb beeps + sink alarm) now comes on automatically when a flight starts — no need to tap ♪ every time",
+        "Tap ♪ to mute or unmute; your choice is now remembered across flights and launches"
+      ]
+    },
+    {
+      "update": 223,
+      "title": "A clear “See your sites” button",
+      "highlights": [
+        "The Career card now has an obvious “🗺 See your sites on a map” button — the tap target on the Sites stat was too easy to miss"
+      ]
+    },
+    {
       "update": 222,
       "title": "Tap “Sites” to see them on a map",
       "highlights": [
